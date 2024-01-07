@@ -44,5 +44,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/application/zalo-bot/atrati
+            cd ~/application/zalo-atrati
             sh deploy.sh
