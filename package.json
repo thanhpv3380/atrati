@@ -1,0 +1,42 @@
+{
+  "name": "zalo-atrati",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@thanhpv3380/axios2curl": "^1.0.2",
+    "axios": "^0.21.4",
+    "camelcase-keys": "^6.2.2",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validation": "^3.0.6",
+    "helmet": "^3.23.3",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^6.3.0",
+    "moment": "^2.29.1",
+    "mongoose": "^8.0.1",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.7",
+    "snakecase-keys": "^3.2.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "lint-staged": "^11.2.0",
+    "nodemon": "^2.0.18",
+    "prettier": "^2.0.5"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  }
+}

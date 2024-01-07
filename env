@@ -1,0 +1,6 @@
+PORT=
+ENV=
+
+JWT_SECRET_KEY=
+
+MONGO_URI=
