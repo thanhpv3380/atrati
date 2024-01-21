@@ -288,7 +288,7 @@ const actions = {
       const statRule = statRules[statType];
       const statKey = statRule
         ? statRule(financialTransaction)
-        : dateToString(date, 'DD/MM/YYYY HH:mm');
+        : dateToString(date, 'DD/MM/YYYY HH:mm:ss');
 
       let income = 0;
       let expense = 0;
