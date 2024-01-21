@@ -3,4 +3,45 @@ const PAYMENT_STATUS = {
   PAID: 'PAID',
 };
 
-module.exports = { PAYMENT_STATUS };
+const USER_ROLE = {
+  ADMIN: 'ADMIN',
+  MEMBER: 'MEMBER',
+};
+
+const MESSAGE_STATUS = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+};
+
+const USER_SEX = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+};
+
+const FINANCIAL_TRANSACTION_TYPE = {
+  INCOME: 'INCOME',
+  EXPENSE: 'EXPENSE',
+};
+
+const LANGUAGE = {
+  VI: 'vi',
+  EN: 'en',
+};
+
+const STAT_TYPE = {
+  DAY: 'DAY',
+  WEEK: 'WEEK',
+  MONTH: 'MONTH',
+  YEAR: 'YEAR',
+};
+
+module.exports = {
+  PAYMENT_STATUS,
+  USER_ROLE,
+  MESSAGE_STATUS,
+  USER_SEX,
+  FINANCIAL_TRANSACTION_TYPE,
+  LANGUAGE,
+  STAT_TYPE,
+};

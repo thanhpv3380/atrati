@@ -79,6 +79,22 @@ const addTime = (time, amount, unitOfTime = 'second') => {
   return moment(time).add(amount, unitOfTime);
 };
 
+const toDate = (dateString) => {
+  return moment(dateString).toDate();
+};
+
+const dateToString = (date, format = 'YYYYMMDD') => {
+  return moment(date).format(format);
+};
+
+const getStartDate = (date = new Date(), type = 'day') => {
+  return moment(date).startOf(type);
+};
+
+const getEndDate = (date = new Date(), type = 'day') => {
+  return moment(date).endOf(type);
+};
+
 module.exports = {
   msTimestamp,
   diffTime,
@@ -88,4 +104,8 @@ module.exports = {
   getTimeLabels,
   classifyTime,
   addTime,
+  toDate,
+  dateToString,
+  getStartDate,
+  getEndDate,
 };

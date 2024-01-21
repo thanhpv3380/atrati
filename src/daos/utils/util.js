@@ -7,6 +7,7 @@ const findAll = async ({
   page = 1,
 
   populate = [],
+  sort = {},
 }) => {
   const options = {};
 
@@ -27,6 +28,7 @@ const findAll = async ({
         return item;
       }),
     )
+    .sort(sort)
     .lean();
 
   let pagination;

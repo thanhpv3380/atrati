@@ -1,5 +1,5 @@
 {
-  "name": "zalo-atrati",
+  "name": "atrati",
   "version": "1.0.0",
   "scripts": {
     "start": "node src/index.js",
@@ -10,6 +10,7 @@
   "dependencies": {
     "@thanhpv3380/axios2curl": "^1.0.2",
     "axios": "^0.21.4",
+    "botbuilder": "^4.21.4",
     "camelcase-keys": "^6.2.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
@@ -22,6 +23,7 @@
     "moment": "^2.29.1",
     "mongoose": "^8.0.1",
     "morgan": "^1.10.0",
+    "node-telegram-bot-api": "^0.64.0",
     "nodemailer": "^6.9.7",
     "snakecase-keys": "^3.2.0",
     "uuid": "^9.0.0"

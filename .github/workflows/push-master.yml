@@ -31,7 +31,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/zalo-atrati:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/atrati:latest
 
       - name: Verify
         run: echo ${{ steps.docker_build.outputs.digest }}
@@ -44,5 +44,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd ~/application/zalo-atrati
+            cd ~/application/atrati
             sh deploy.sh

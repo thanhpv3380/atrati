@@ -1,21 +1,18 @@
 const mongoose = require('mongoose');
-const Transaction = require('../models/transaction');
+const FinancialTransaction = require('../models/financialTransaction');
 const { findAll } = require('./utils/util');
 
 const { ObjectId } = mongoose.Types;
 
-const findTransactions = async (
-  { limit, page, hasPagination, userId, userIds, status, startTime, endTime } = {},
+const findFinancialTransactions = async (
+  { limit, page, hasPagination, userId, userIds, type, startTime, endTime, sort } = {},
   isPopulate,
   attributes,
 ) => {
   const filters = {};
   if (userIds) filters.userId = { $in: userIds.split(',') };
   if (userId) filters.userId = userId;
-
-  if (status) {
-    filters.status = { $in: status.split(',') };
-  }
+  if (type) filters.type = type;
 
   const dateFilters = {};
   if (startTime) dateFilters.$gte = new Date(startTime);
@@ -23,7 +20,7 @@ const findTransactions = async (
   if (dateFilters && Object.keys(dateFilters).length > 0) filters.date = dateFilters;
 
   const result = await findAll({
-    model: Transaction,
+    model: FinancialTransaction,
     populate: isPopulate
       ? [
           {
@@ -37,14 +34,15 @@ const findTransactions = async (
     limit,
     page,
     attributes,
+    sort,
   });
 
   return result;
 };
 
-const findTransaction = async (query, isPopulate) => {
+const findFinancialTransaction = async (query, isPopulate) => {
   if (ObjectId.isValid(query)) {
-    const item = await Transaction.findById(query).populate(
+    const item = await FinancialTransaction.findById(query).populate(
       isPopulate
         ? [
             {
@@ -58,7 +56,7 @@ const findTransaction = async (query, isPopulate) => {
   }
 
   if (query && typeof query === 'object') {
-    const item = await Transaction.findOne(query).populate(
+    const item = await FinancialTransaction.findOne(query).populate(
       isPopulate
         ? [
             {
@@ -74,34 +72,34 @@ const findTransaction = async (query, isPopulate) => {
   return null;
 };
 
-const createTransaction = async (data) => {
-  const item = await Transaction.create(data);
+const createFinancialTransaction = async (data) => {
+  const item = await FinancialTransaction.create(data);
   return item;
 };
 
-const createManyTransaction = async (data) => {
-  const items = await Transaction.insertMany(data);
+const createManyFinancialTransaction = async (data) => {
+  const items = await FinancialTransaction.insertMany(data);
   return items;
 };
 
-const updateTransaction = async (query, data) => {
-  await Transaction.findOneAndUpdate(query, data);
+const updateFinancialTransaction = async (query, data) => {
+  await FinancialTransaction.findOneAndUpdate(query, data);
 };
 
-const updateManyTransaction = async (query, data) => {
-  await Transaction.updateMany(query, data);
+const updateManyFinancialTransaction = async (query, data) => {
+  await FinancialTransaction.updateMany(query, data);
 };
 
-const deleteTransaction = async (query) => {
-  await Transaction.deleteOne(query);
+const deleteFinancialTransaction = async (query) => {
+  await FinancialTransaction.deleteOne(query);
 };
 
 module.exports = {
-  findTransactions,
-  findTransaction,
-  createTransaction,
-  createManyTransaction,
-  updateTransaction,
-  updateManyTransaction,
-  deleteTransaction,
+  findFinancialTransactions,
+  findFinancialTransaction,
+  createFinancialTransaction,
+  createManyFinancialTransaction,
+  updateFinancialTransaction,
+  updateManyFinancialTransaction,
+  deleteFinancialTransaction,
 };

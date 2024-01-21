@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
-const { PAYMENT_STATUS } = require('../constants');
+const { FINANCIAL_TRANSACTION_TYPE } = require('../constants');
 
 const { ObjectId } = mongoose.Types;
 
 const schema = new mongoose.Schema(
   {
     date: Date,
+    type: {
+      type: String,
+      enum: FINANCIAL_TRANSACTION_TYPE,
+    },
     description: String,
     amount: Number,
-    status: {
-      type: String,
-      enum: PAYMENT_STATUS,
-    },
     userId: {
       type: ObjectId,
       ref: 'User',
@@ -23,4 +23,4 @@ const schema = new mongoose.Schema(
   },
 );
 
-module.exports = mongoose.model('Transaction', schema);
+module.exports = mongoose.model('FinancialTransaction', schema);
