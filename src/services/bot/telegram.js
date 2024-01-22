@@ -27,6 +27,7 @@ const {
 
 const ACTION_TYPE = {
   HELP: 'HELP',
+  ADD_MEMBER: 'ADD_MEMBER',
   GET_MEMBERS: 'GET_MEMBERS',
   ADD_TRANSACTION: 'ADD_TRANSACTION',
   GET_TRANSACTIONS_BY_USER: 'GET_TRANSACTIONS_BY_USER',
@@ -44,6 +45,10 @@ const commands = {
   '/command': ACTION_TYPE.HELP,
   '/lenh': ACTION_TYPE.HELP,
   '/caulenh': ACTION_TYPE.HELP,
+
+  '/addmember': ACTION_TYPE.ADD_MEMBER,
+  '/addmem': ACTION_TYPE.ADD_MEMBER,
+  '/addmb': ACTION_TYPE.ADD_MEMBER,
 
   '/members': ACTION_TYPE.GET_MEMBERS,
   '/member': ACTION_TYPE.GET_MEMBERS,
@@ -91,6 +96,7 @@ const actions = {
     message += `6. Thêm thu: /income, /in, /thu \nVí dụ: /income so_tien,mo_ta,ngay_thu \n\n`;
     message += `7. Thêm chi: /expense, /out, /chi \nVí dụ: /expense so_tien,mo_ta,ngay_chi \n\n`;
     message += `8. Thống kê thu chi: /inout, /thuchi, /chithu \n=> Chỉ xem được của chính mình \nVí dụ: /inout type,start_time,end_time,in_out\n - type: Loại thống kê (DAY, WEEK, MONTH, YEAR) \n - start_time, end_time: Query khi không truyền vào type\n - in_out: loại thu hoặc chi (INCOME: thu - EXPENSE: chi)\n\n`;
+    message += `9. Thêm user: /addmember, /addmem, /addmb \n=> Chỉ ADMIN mới có thể thêm \nVí dụ: /addmember name \n\n`;
 
     return message;
   },
@@ -105,6 +111,22 @@ const actions = {
     }
 
     return message;
+  },
+  [ACTION_TYPE.ADD_MEMBER]: async (msg, userReq) => {
+    if (userReq.role !== USER_ROLE.ADMIN) throw new CustomError(errorCodes.UNAUTHORIZED);
+
+    const [name] = msg.split(',');
+    if (!name) throw new CustomError(errorCodes.MESSAGE_PARAM_INVALID);
+
+    await userDao.createUser({
+      name,
+      telegramLanguage: LANGUAGE.VI,
+      role: USER_ROLE.MEMBER,
+      paidAmount: 0,
+      unpaidAmount: 0,
+    });
+
+    return '✅ Add member success';
   },
   [ACTION_TYPE.ADD_TRANSACTION]: async (msg, userReq) => {
     if (userReq.role !== USER_ROLE.ADMIN) throw new CustomError(errorCodes.UNAUTHORIZED);
