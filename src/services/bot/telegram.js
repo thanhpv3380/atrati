@@ -254,8 +254,8 @@ const actions = {
     let startTime;
     let endTime;
     if (!statType) {
-      startTime = startTimeStr ? toDate(startTimeStr) : getStartDate();
-      endTime = endTimeStr ? toDate(endTimeStr) : getEndDate();
+      startTime = getStartDate(startTimeStr && toDate(startTimeStr));
+      endTime = getEndDate(endTimeStr && toDate(endTimeStr));
     }
 
     const { items: financialTransactions } =

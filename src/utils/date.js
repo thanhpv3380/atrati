@@ -79,8 +79,8 @@ const addTime = (time, amount, unitOfTime = 'second') => {
   return moment(time).add(amount, unitOfTime);
 };
 
-const toDate = (dateString) => {
-  return moment(dateString).toDate();
+const toDate = (dateString, format = 'YYYYMMDDHHmmss') => {
+  return moment(dateString, format);
 };
 
 const dateToString = (date, format = 'YYYYMMDD') => {
